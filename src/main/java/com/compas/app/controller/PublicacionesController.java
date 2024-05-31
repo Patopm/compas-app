@@ -1,10 +1,12 @@
 package com.compas.app.controller;
 
 import com.compas.app.model.Publicaciones;
+import com.compas.app.model.Usuario;
 import com.compas.app.service.PublicacionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -30,10 +32,17 @@ public class PublicacionesController {
     }
 
     //Post
-    /*@PostMapping("/add-publicacion")
-    public void registerNewPublicacion(@RequestBody Publicaciones publicaciones){
-        publicaciones.setCreatedAt(LocalDate.now());
-        publicaciones.setUpdatedAt(LocalDate.now());
-        publicacionesService.addNewPublicacion(publicaciones);
-    }*/
+    @PostMapping("/add-publicacion/{id}")
+    public void registerNewPublicacion(@RequestBody Publicaciones publicaciones,
+                                       @PathVariable(name = "id") Usuario usuario){
+        publicaciones.setCreatedAt(LocalDateTime.now());
+        publicaciones.setUpdatedAt(LocalDateTime.now());
+        publicacionesService.addNewPublicacion(publicaciones, usuario);
+    }
+
+    //Delete
+    @DeleteMapping(path = "/{id}")
+    public void deletePublicacion(@PathVariable(name = "id")Long id){
+        publicacionesService.deletePublicacionById(id);
+    }
 }

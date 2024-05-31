@@ -1,5 +1,6 @@
 package com.compas.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -36,12 +37,13 @@ public class Publicaciones {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JsonBackReference
+    private com.compas.app.model.Usuario usuario;
 
     public Publicaciones() {
     }
 
-    public Publicaciones(String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, Usuario usuario) {
+    public Publicaciones(String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.multimedia = multimedia;
@@ -51,7 +53,7 @@ public class Publicaciones {
         this.usuario = usuario;
     }
 
-    public Publicaciones(Long idPublicacion, String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, Usuario usuario) {
+    public Publicaciones(Long idPublicacion, String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
         this.idPublicacion = idPublicacion;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -118,7 +120,7 @@ public class Publicaciones {
         this.comentarios = comentarios;
     }
 
-    public Usuario getUsuario() {
+    public com.compas.app.model.Usuario getUsuario() {
         return usuario;
     }
 

@@ -1,5 +1,6 @@
 package com.compas.app.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -82,6 +83,7 @@ public class Usuario {
     private List<Comentarios> comentarios;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Publicaciones> publicaciones;
 
     public Usuario() {

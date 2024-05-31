@@ -27,11 +27,11 @@ public class Artistas implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario id_usuario;
+    private com.compas.app.model.Usuario id_usuario;
 
     @OneToMany(mappedBy = "artista_id", cascade = CascadeType.ALL, orphanRemoval = true)
     // @JsonManagedReference
-    private List<Demos> demo;
+    private List<com.compas.app.model.Demos> demo;
 
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -56,7 +56,7 @@ public class Artistas implements Serializable {
     public Artistas() {
     }
 
-    public Artistas(String acerca_de, LocalDateTime created_at, LocalDateTime updated_at, Usuario id_usuario, List<Demos> demo) {
+    public Artistas(String acerca_de, LocalDateTime created_at, LocalDateTime updated_at, com.compas.app.model.Usuario id_usuario, List<com.compas.app.model.Demos> demo) {
         this.acerca_de = acerca_de;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -65,7 +65,7 @@ public class Artistas implements Serializable {
     }
 
 
-    public Artistas(Long id_artista, String acerca_de, LocalDateTime created_at, LocalDateTime updated_at, Usuario id_usuario, List<Demos> demo) {
+    public Artistas(Long id_artista, String acerca_de, LocalDateTime created_at, LocalDateTime updated_at, com.compas.app.model.Usuario id_usuario, List<com.compas.app.model.Demos> demo) {
         this.id_artista = id_artista;
         this.acerca_de = acerca_de;
         this.created_at = created_at;
@@ -107,7 +107,7 @@ public class Artistas implements Serializable {
         this.updated_at = updated_at;
     }
 
-    public Usuario getId_usuario() {
+    public com.compas.app.model.Usuario getId_usuario() {
         return id_usuario;
     }
 
@@ -115,7 +115,7 @@ public class Artistas implements Serializable {
         this.id_usuario = id_usuario;
     }
 
-    public List<Demos> getDemo() {
+    public List<com.compas.app.model.Demos> getDemo() {
         return demo;
     }
 
