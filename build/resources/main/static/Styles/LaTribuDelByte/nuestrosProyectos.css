@@ -1,0 +1,26 @@
+/* @import url(../Styles/main.css); */
+
+.nuestrosProyectos{
+    text-align: center;
+    margin: 20px;
+    width: auto;
+    height: auto;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+
+.compas-Card{
+    width: 160px;
+    height: 220px;
+    margin: 30px;
+    align-content: center;
+    background-color: var(--secondaryBg-color);
+    border-radius: 10px;
+}
+.material-symbols-outlined
+{
+    color: black;
+    text-decoration: none;
+}
+
