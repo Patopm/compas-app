@@ -1,6 +1,5 @@
 package com.compas.app.model;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -22,11 +21,11 @@ public class Generos_musicales {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime created_at;
 
-    @Column(name = "Updated_at")
+    @Column(name = "Updated_at", nullable = false, length = 50)
     private LocalDateTime updated_at;
 
     @ManyToMany (mappedBy = "id_genero_musical")
-    private List<com.compas.app.model.Artistas> artistaId;
+    private List<Artistas> artistaId;
 
     @PrePersist
     protected void onCreate(){
@@ -41,14 +40,14 @@ public class Generos_musicales {
     public Generos_musicales() {
     }
 
-    public Generos_musicales(String genero_musical, LocalDateTime created_at, LocalDateTime updated_at, List<com.compas.app.model.Artistas> artistaId) {
+    public Generos_musicales(String genero_musical, LocalDateTime created_at, LocalDateTime updated_at, List<Artistas> artistaId) {
         this.genero_musical = genero_musical;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.artistaId = artistaId;
     }
 
-    public Generos_musicales(Long id, String genero_musical, LocalDateTime created_at, LocalDateTime updated_at, List<com.compas.app.model.Artistas> artistaId) {
+    public Generos_musicales(Long id, String genero_musical, LocalDateTime created_at, LocalDateTime updated_at, List<Artistas> artistaId) {
         this.id = id;
         this.genero_musical = genero_musical;
         this.created_at = created_at;
@@ -88,7 +87,7 @@ public class Generos_musicales {
         this.updated_at = updated_at;
     }
 
-    public List<com.compas.app.model.Artistas> getArtistaId() {
+    public List<Artistas> getArtistaId() {
         return artistaId;
     }
 

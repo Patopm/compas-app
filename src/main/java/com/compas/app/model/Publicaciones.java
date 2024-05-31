@@ -1,8 +1,9 @@
 package com.compas.app.model;
+
 import jakarta.persistence.*;
 
-import java.util.Arrays;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,16 +32,16 @@ public class Publicaciones {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<com.compas.app.model.Comentarios> comentarios;
+    private List<Comentarios> comentarios;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
-    private com.compas.app.model.Usuario usuario;
+    private Usuario usuario;
 
     public Publicaciones() {
     }
 
-    public Publicaciones(String titulo, String descripcion, byte[] multimedia, LocalDate createdAt, LocalDate updatedAt, List<com.compas.app.model.Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
+    public Publicaciones(String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, Usuario usuario) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.multimedia = multimedia;
@@ -50,7 +51,7 @@ public class Publicaciones {
         this.usuario = usuario;
     }
 
-    public Publicaciones(Long idPublicacion, String titulo, String descripcion, byte[] multimedia, LocalDate createdAt, LocalDate updatedAt, List<com.compas.app.model.Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
+    public Publicaciones(Long idPublicacion, String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, Usuario usuario) {
         this.idPublicacion = idPublicacion;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -93,23 +94,23 @@ public class Publicaciones {
         this.multimedia = multimedia;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDate getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public List<com.compas.app.model.Comentarios> getComentarios() {
+    public List<Comentarios> getComentarios() {
         return comentarios;
     }
 
@@ -117,7 +118,7 @@ public class Publicaciones {
         this.comentarios = comentarios;
     }
 
-    public com.compas.app.model.Usuario getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 

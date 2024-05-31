@@ -35,7 +35,7 @@ public class Demos {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="artistaId", nullable = false)
     @JsonBackReference
-    private com.compas.app.model.Artistas artista_id;
+    private Artistas artista_id;
 
     private Long genero_musical_id;
 
@@ -50,11 +50,11 @@ public class Demos {
 
 
     @JsonCreator
-    public Demos(@JsonProperty com.compas.app.model.Artistas artista_id) {
+    public Demos(@JsonProperty Artistas artista_id) {
         this.artista_id = artista_id;
     }
 
-    public Demos(Long id_demo, String titulo, String fecha_de_lanzamiento, String link, LocalDateTime created_at, LocalDateTime updated_at, com.compas.app.model.Artistas artista_id, Long genero_musical_id) {
+    public Demos(Long id_demo, String titulo, String fecha_de_lanzamiento, String link, LocalDateTime created_at, LocalDateTime updated_at, Artistas artista_id, Long genero_musical_id) {
 
         this.id_demo = id_demo;
         this.titulo = titulo;
@@ -66,7 +66,7 @@ public class Demos {
         this.genero_musical_id = genero_musical_id;
     }
 
-    public Demos(String titulo, String fecha_de_lanzamiento, String link, LocalDateTime created_at, LocalDateTime updated_at, com.compas.app.model.Artistas artista_id, Long genero_musical_id) {
+    public Demos(String titulo, String fecha_de_lanzamiento, String link, LocalDateTime created_at, LocalDateTime updated_at, Artistas artista_id, Long genero_musical_id) {
         this.titulo = titulo;
         this.fecha_de_lanzamiento = fecha_de_lanzamiento;
         this.link = link;
@@ -124,7 +124,7 @@ public class Demos {
         this.updated_at = updated_at;
     }
 
-    public com.compas.app.model.Artistas getArtista_id() {
+    public Artistas getArtista_id() {
         return artista_id;
     }
 

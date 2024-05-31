@@ -25,7 +25,17 @@ public class Instrumentos {
     private LocalDateTime updated_at;
 
     @ManyToMany (mappedBy = "id_instrumento")
-    private List<com.compas.app.model.Artistas> artistaId;
+    private List<Artistas> artistaId;
+
+    @PrePersist
+    protected void onCreate(){
+        this.created_at = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_at = LocalDateTime.now();
+    }
 
     public Instrumentos() {
     }
@@ -34,6 +44,7 @@ public class Instrumentos {
         this.instrumento = instrumento;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.artistaId = artistaId;
     }
 
     public Instrumentos(Long id, String instrumento, LocalDateTime created_at, LocalDateTime updated_at) {
@@ -41,6 +52,7 @@ public class Instrumentos {
         this.instrumento = instrumento;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.artistaId = artistaId;
     }
 
     public Long getId() {
@@ -75,7 +87,7 @@ public class Instrumentos {
         this.updated_at = updated_at;
     }
 
-    public List<com.compas.app.model.Artistas> getArtistaId() {
+    public List<Artistas> getArtistaId() {
         return artistaId;
     }
 
@@ -90,6 +102,7 @@ public class Instrumentos {
                 ", instrumento='" + instrumento + '\'' +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
+                ", artistaId=" + artistaId +
                 '}';
     }
 
@@ -98,11 +111,11 @@ public class Instrumentos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instrumentos that = (Instrumentos) o;
-        return Objects.equals(id, that.id) && Objects.equals(instrumento, that.instrumento) && Objects.equals(created_at, that.created_at) && Objects.equals(updated_at, that.updated_at);
+        return Objects.equals(id, that.id) && Objects.equals(instrumento, that.instrumento) && Objects.equals(created_at, that.created_at) && Objects.equals(updated_at, that.updated_at) && Objects.equals(artistaId, that.artistaId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, instrumento, created_at, updated_at);
+        return Objects.hash(id, instrumento, created_at, updated_at, artistaId);
     }
 }

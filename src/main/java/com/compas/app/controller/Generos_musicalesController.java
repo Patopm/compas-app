@@ -23,17 +23,19 @@ public class Generos_musicalesController {
         this.generos_musicalesService = generos_musicalesService;
     }
 
-    // GET
+    // Método GET ALL
     @GetMapping
     public List<Generos_musicales> getAllGeneros_musicales(){
         return generos_musicalesService.getALLGeneros_musicales();
     }
 
+    // Método GET por id
     @GetMapping("/{id}")
     public Generos_musicales getGenero_musicalById(@PathVariable(name = "id") Long id){
         return generos_musicalesService.getGenero_musicalById(id);
     }
 
+    // Método GET por nombre genero musical
     @GetMapping("/{genero_musical}")
     public ResponseEntity<Generos_musicales> getGenero_musicalByName(@RequestParam(name = "genero_musical") String generos_musicales){
         Generos_musicales genero_musical = generos_musicalesService.getGenero_musicalByName(generos_musicales);

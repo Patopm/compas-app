@@ -22,16 +22,18 @@ public class Generos_musicalesService {
     public Generos_musicalesService(Generos_musicalesRepository generos_musicalesRepository){
         this.generos_musicalesRepository = generos_musicalesRepository;
     }
+
     // Método GET
     public List<Generos_musicales> getALLGeneros_musicales(){
         return generos_musicalesRepository.findAll();
     }
+
     // Método GET por id
     public Generos_musicales getGenero_musicalById(Long id){ // Buscar solo por id
         return generos_musicalesRepository.findById(id).orElseThrow(() -> new Genero_musicalidNotFoundException(id));
     }
 
-    // Método GET por nombre
+    // Método GET por nombre Genero musical
     public Generos_musicales getGenero_musicalByName(String genero_musical){ // Buscar solo por nombre
         return generos_musicalesRepository.findByGeneroMusical(genero_musical).orElseThrow(() -> new Genero_musicalNotFoundException(genero_musical));
     }
@@ -40,12 +42,12 @@ public class Generos_musicalesService {
     public void addNewGenero_musical(Generos_musicales generoMusical){
         Optional<Generos_musicales> generoMusicalOptional = generos_musicalesRepository.findByGeneroMusical(generoMusical.getGenero_musical());
         if(generoMusicalOptional.isPresent()) {
-            throw new Genero_musicalNotFoundException("genero_musical" + generoMusical.getGenero_musical() + "Ya existe");
+            throw new Genero_musicalNotFoundException("Genero musical" + generoMusical.getGenero_musical() + "Ya existe");
         }
         generos_musicalesRepository.save(generoMusical);
     }
 
-    // Método delete
+    // Método DELETE
     public void deleteGenero_musical(Long id){
         boolean exists = generos_musicalesRepository.existsById(id);
                 if(!exists){
@@ -55,14 +57,12 @@ public class Generos_musicalesService {
     }
 
     // Método PUT
-
-    //public void upDateGenero_musical(Long id, Generos_musicales upDateGenero_musical){
-      //  Generos_musicales genero_musical = generos_musicalesRepository.findById(id).orElseThrow(() -> new Genero_musicalidNotFoundException(id));
-       // if (upDateGenero_musical.getGenero_musical() != null && upDateGenero_musical.getGenero_musical().length() > 0 && !Objects.equals(genero_musical.getGenero_musical(), upDateGenero_musical.getGenero_musical())){
-         //   genero_musical.setGenero_musical(upDateGenero_musical.getGenero_musical());
-        //}
-        //genero_musical.setUpdated_at(LocalDateTime.now());
-    //}
-
+    public void upDateGenero_musical(Long id, Generos_musicales upDateGenero_musical){
+        Generos_musicales genero_musical = generos_musicalesRepository.findById(id).orElseThrow(() -> new Genero_musicalidNotFoundException(id));
+    if (upDateGenero_musical != null && upDateGenero_musical.getGenero_musical().length() > 0 && !Objects.equals(genero_musical.getGenero_musical(), upDateGenero_musical.getGenero_musical())){
+        genero_musical.setGenero_musical(upDateGenero_musical.getGenero_musical());
+    }
+        upDateGenero_musical.setUpdated_at(LocalDateTime.now());
+    }
 }
 

@@ -10,5 +10,4 @@ public class Genero_musicalNotFoundException extends RuntimeException{
     public Genero_musicalNotFoundException(String genero_musical){
         super("Genero musical no encontrado:" + genero_musical);
     }
-
 }
