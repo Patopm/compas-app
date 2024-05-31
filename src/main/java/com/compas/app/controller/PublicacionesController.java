@@ -45,4 +45,12 @@ public class PublicacionesController {
     public void deletePublicacion(@PathVariable(name = "id")Long id){
         publicacionesService.deletePublicacionById(id);
     }
+
+    //Put
+    @PutMapping(path = "/{id}")
+    public List<Publicaciones>  updateUsuario(@PathVariable("id") Long id,
+                              @RequestBody Publicaciones publicacion){
+        publicacionesService.updatePublicacion(id, publicacion);
+        return publicacionesService.getAllPublicaciones();
+    }
 }

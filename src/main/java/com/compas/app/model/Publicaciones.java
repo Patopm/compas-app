@@ -33,7 +33,7 @@ public class Publicaciones {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comentarios> comentarios;
+    private List<com.compas.app.model.Comentarios> comentarios;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -43,7 +43,7 @@ public class Publicaciones {
     public Publicaciones() {
     }
 
-    public Publicaciones(String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
+    public Publicaciones(String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<com.compas.app.model.Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.multimedia = multimedia;
@@ -53,7 +53,7 @@ public class Publicaciones {
         this.usuario = usuario;
     }
 
-    public Publicaciones(Long idPublicacion, String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
+    public Publicaciones(Long idPublicacion, String titulo, String descripcion, byte[] multimedia, LocalDateTime createdAt, LocalDateTime updatedAt, List<com.compas.app.model.Comentarios> comentarios, com.compas.app.model.Usuario usuario) {
         this.idPublicacion = idPublicacion;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -112,7 +112,7 @@ public class Publicaciones {
         this.updatedAt = updatedAt;
     }
 
-    public List<Comentarios> getComentarios() {
+    public List<com.compas.app.model.Comentarios> getComentarios() {
         return comentarios;
     }
 

@@ -25,7 +25,7 @@ public class Instrumentos {
     private LocalDateTime updated_at;
 
     @ManyToMany (mappedBy = "id_instrumento")
-    private List<Artistas> artistaId;
+    private List<com.compas.app.model.Artistas> artistaId;
 
     @PrePersist
     protected void onCreate(){
@@ -87,7 +87,7 @@ public class Instrumentos {
         this.updated_at = updated_at;
     }
 
-    public List<Artistas> getArtistaId() {
+    public List<com.compas.app.model.Artistas> getArtistaId() {
         return artistaId;
     }
 

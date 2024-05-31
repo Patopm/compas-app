@@ -6,10 +6,13 @@ import com.compas.app.model.Publicaciones;
 import com.compas.app.model.Usuario;
 import com.compas.app.repository.PublicacionesRepository;
 import com.compas.app.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,5 +57,19 @@ public class PublicacionesService {
 
     public void deletePublicacionById (Long id){
         publicacionesRepository.deleteById(id);
+    }
+
+    //  Actualizar usuario
+    @Transactional
+    public void updatePublicacion(Long idPublicacion, Publicaciones updatePublicacion){
+        Publicaciones publicacion = publicacionesRepository.findById(idPublicacion)
+                .orElseThrow(() -> new UsuarioNotFoundException(idPublicacion));
+        if (updatePublicacion.getTitulo() != null && !updatePublicacion.getTitulo().isEmpty() && !Objects.equals(publicacion.getTitulo(), updatePublicacion.getTitulo())){
+            publicacion.setTitulo(updatePublicacion.getTitulo());
+        }
+        if (updatePublicacion.getDescripcion() != null && !updatePublicacion.getDescripcion().isEmpty() && !Objects.equals(publicacion.getDescripcion(), updatePublicacion.getDescripcion())){
+            publicacion.setDescripcion(updatePublicacion.getDescripcion());
+        }
+        publicacion.setUpdatedAt(LocalDateTime.now());
     }
 }
