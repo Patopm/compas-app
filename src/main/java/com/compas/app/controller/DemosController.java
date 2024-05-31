@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/demos")
-@CrossOrigin(origins = "*", methods = {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class DemosController {
     private final DemosService demosService;
 

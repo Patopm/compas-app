@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/artistas")
-@CrossOrigin(origins = "*", methods = {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class ArtistasController {
     private final ArtistasService artistasService;
 
@@ -26,8 +26,8 @@ public class ArtistasController {
 
     @PostMapping(path = "/add-artista")
     public void addNewArtista(@RequestBody Artistas artistas){
-        artistas.setCreated_at(LocalDate.now());
-        artistas.setUpdated_at(LocalDate.now());
+        artistas.setCreated_at(LocalDateTime.now());
+        artistas.setUpdated_at(LocalDateTime.now());
         artistasService.addNewArtista(artistas);
     }
 

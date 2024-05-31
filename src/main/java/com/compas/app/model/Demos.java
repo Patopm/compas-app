@@ -1,9 +1,11 @@
 package com.compas.app.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -25,15 +27,15 @@ public class Demos {
     private String link;
 
     @Column(name = "created_at", updatable = false, insertable = false)
-    private LocalDate created_at;
+    private LocalDateTime created_at;
 
     @Column(name = "updated_at", insertable = false)
-    private LocalDate updated_at;
+    private LocalDateTime updated_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="artistaId", nullable = false)
     @JsonBackReference
-    private Artistas artista_id;
+    private com.compas.app.model.Artistas artista_id;
 
     private Long genero_musical_id;
 
@@ -46,7 +48,14 @@ public class Demos {
     public Demos() {
     }
 
-    public Demos(Long id_demo, String titulo, String fecha_de_lanzamiento, String link, LocalDate created_at, LocalDate updated_at, Artistas artista_id, Long genero_musical_id) {
+
+    @JsonCreator
+    public Demos(@JsonProperty com.compas.app.model.Artistas artista_id) {
+        this.artista_id = artista_id;
+    }
+
+    public Demos(Long id_demo, String titulo, String fecha_de_lanzamiento, String link, LocalDateTime created_at, LocalDateTime updated_at, com.compas.app.model.Artistas artista_id, Long genero_musical_id) {
+
         this.id_demo = id_demo;
         this.titulo = titulo;
         this.fecha_de_lanzamiento = fecha_de_lanzamiento;
@@ -57,7 +66,7 @@ public class Demos {
         this.genero_musical_id = genero_musical_id;
     }
 
-    public Demos(String titulo, String fecha_de_lanzamiento, String link, LocalDate created_at, LocalDate updated_at, Artistas artista_id, Long genero_musical_id) {
+    public Demos(String titulo, String fecha_de_lanzamiento, String link, LocalDateTime created_at, LocalDateTime updated_at, com.compas.app.model.Artistas artista_id, Long genero_musical_id) {
         this.titulo = titulo;
         this.fecha_de_lanzamiento = fecha_de_lanzamiento;
         this.link = link;
@@ -99,23 +108,23 @@ public class Demos {
         this.link = link;
     }
 
-    public LocalDate getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDate getUpdated_at() {
+    public LocalDateTime getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
+    public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
 
-    public Artistas getArtista_id() {
+    public com.compas.app.model.Artistas getArtista_id() {
         return artista_id;
     }
 

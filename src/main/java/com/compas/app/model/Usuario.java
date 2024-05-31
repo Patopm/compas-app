@@ -2,7 +2,7 @@ package com.compas.app.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ public class Usuario {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "contraseña", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "genero", nullable = false)
@@ -50,43 +50,44 @@ public class Usuario {
     private byte[] foto_portada;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDate created_at;
+    private LocalDateTime created_at;
 
     @Column(name = "updated_at")
-    private LocalDate updated_at;
+    private LocalDateTime updated_at;
 
     @OneToOne(mappedBy = "id_usuario")
     private Artistas artistaId;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<MeEntona> meEntona;
     @JoinTable(
             name = "usuarios_me_entona",
             joinColumns = @JoinColumn(name = "FK_USUARIO", nullable = false),
             inverseJoinColumns = @JoinColumn(name="FK_ME_ENTONA", nullable = false)
     )
+    private List<MeEntona> meEntona;
+
 
 
     @PrePersist
     protected void onCreate(){
-        this.created_at = LocalDate.now();
+        this.created_at = LocalDateTime.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        this.updated_at = LocalDate.now();
+        this.updated_at = LocalDateTime.now();
     }
 
-//    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Comentarios> comentarios;
-//
-//    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Publicaciones> publicaciones;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentarios> comentarios;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Publicaciones> publicaciones;
 
     public Usuario() {
     }
 
-    public Usuario(Long id_usuario, String nombre, String apellidos, Integer edad, String email, String password, String genero, Integer codigoPostal, String estado, String ciudad, byte[] foto_perfil, byte[] foto_portada, LocalDate created_at, LocalDate updated_at) {
+    public Usuario(Long id_usuario, String nombre, String apellidos, Integer edad, String email, String password, String genero, Integer codigoPostal, String estado, String ciudad, byte[] foto_perfil, byte[] foto_portada, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -103,7 +104,7 @@ public class Usuario {
         this.updated_at = updated_at;
     }
 
-    public Usuario(String nombre, String apellidos, Integer edad, String email, String password, String genero, Integer codigoPostal, String estado, String ciudad, byte[] foto_perfil, byte[] foto_portada, LocalDate created_at, LocalDate updated_at) {
+    public Usuario(String nombre, String apellidos, Integer edad, String email, String password, String genero, Integer codigoPostal, String estado, String ciudad, byte[] foto_perfil, byte[] foto_portada, LocalDateTime created_at, LocalDateTime updated_at) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
@@ -215,19 +216,19 @@ public class Usuario {
         this.foto_portada = foto_portada;
     }
 
-    public LocalDate getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDate getUpdated_at() {
+    public LocalDateTime getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
+    public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
 

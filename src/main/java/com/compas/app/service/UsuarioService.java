@@ -1,5 +1,6 @@
 package com.compas.app.service;
 
+import com.compas.app.exceptions.ContrasenaInvalidaException;
 import com.compas.app.exceptions.EmailNotFoundException;
 import com.compas.app.exceptions.UsuarioNotFoundException;
 import com.compas.app.model.Usuario;
@@ -8,7 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,6 +38,11 @@ public class UsuarioService {
                 .orElseThrow(() -> new EmailNotFoundException(email));
     }
 
+    public Usuario findUsuarioByEmailAndPassword(String email, String password){
+        return usuarioRepository.findUsuarioByEmailAndPassword(email, password)
+                .orElseThrow(() -> new ContrasenaInvalidaException(email));
+    }
+
     // metodos para post
     public void addNewUsuario(Usuario usuario) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByEmail(usuario.getEmail());
@@ -55,7 +61,7 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    //metodos para post
+    //metodos para put
     @Transactional
     public void updateUsuario(Long idUsuario, Usuario updateUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
@@ -93,6 +99,6 @@ public class UsuarioService {
         if (updateUsuario.getFoto_portada() != null && !Objects.equals(usuario.getFoto_portada(), updateUsuario.getFoto_portada())){
             usuario.setFoto_portada(updateUsuario.getFoto_portada());
         }
-        usuario.setUpdated_at(LocalDate.now());
+        usuario.setUpdated_at(LocalDateTime.now());
     }
 }

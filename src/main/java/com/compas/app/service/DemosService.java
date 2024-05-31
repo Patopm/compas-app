@@ -6,7 +6,7 @@ import com.compas.app.repository.DemosRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 @Service
@@ -20,8 +20,8 @@ public class DemosService {
     }
 
     public Demos addNewDemo(Demos demos) {
-        demos.setCreated_at(LocalDate.now());
-        demos.setUpdated_at(LocalDate.now());
+        demos.setCreated_at(LocalDateTime.now());
+        demos.setUpdated_at(LocalDateTime.now());
         demosRepository.save(demos);
         return demos;
     }

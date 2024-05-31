@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,7 +43,7 @@ public class ArtistasService {
             throw new IllegalStateException("el cambio es el mismo");
         }
         artista.setAcerca_de(acercaDe);
-        artista.setUpdated_at(LocalDate.now());
+        artista.setUpdated_at(LocalDateTime.now());
 
     }
 }

@@ -2,7 +2,7 @@ package com.compas.app.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comentarios")
@@ -16,10 +16,10 @@ public class Comentarios {
     private String comentario;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDate created_at;
+    private LocalDateTime created_at;
 
     @Column(name = "updated_at")
-    private LocalDate updated_at;
+    private LocalDateTime updated_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
