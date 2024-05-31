@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping (path = "/api/v1/meEntona")
+@CrossOrigin(origins = "*", methods = {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class MeEntonaController {
 
     private final MeEntonaService meEntonaService;
