@@ -1,0 +1,43 @@
+/* @import url('./../Styles/main.css'); */
+@import "./../../../../Styles/main.css";
+
+body {
+    font-size: 16px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: var(--background-color);
+}
+
+.footer { 
+    font-weight: bold;
+    display: flex; 
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (min-width: 850px) { 
+    .footer {
+        padding-top: 25px;
+        padding-right: 100px;
+        padding-bottom: 25px;
+        padding-left: 100px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}
+
+.footer a { 
+    text-decoration: none;
+    color: var(--black);
+}
+
+.footer span, a {
+    font-weight: bold;
+    margin: 0;
+}
+
+.footer--copyright {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

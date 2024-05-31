@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de usuario</title>
+    <link rel="icon" href="../../assets/img/logo.ico" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="registroDeUsuario.css" />
+  </head>
+  <body>
+    <main>
+      <h1 class="registroDeUsuario--heading">
+        Estás a un paso de unirte a Compás!
+      </h1>
+      <form
+        class="needs-validation"
+        action="../MiEscena/miEscena.html"
+        novalidate
+      >
+        <!-- Inicio del formulario de registro-->
+        <div class="container">
+          <div class="row g-3">
+            <label>Datos personales</label>
+            <!-- Datos personales -->
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="Nombres"
+                  required
+                />
+                <label for="inputName" class="form-label">Nombres</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputApellido"
+                  placeholder="Apellidos"
+                  required
+                />
+                <label for="inputApellido" class="form-label">Apellidos</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputAge"
+                  placeholder="Edad"
+                  required
+                />
+                <label for="inputAge" class="form-label">Edad</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <select id="inputGender" class="form-select" required>
+                  <option value="" selected disabled hidden>Género</option>
+                  <option value="1">Masculino</option>
+                  <option value="2">Femenino</option>
+                  <option value="3">Otro</option>
+                  <option value="4">Prefiero no decirlo</option>
+                </select>
+                <label for="inputGender" class="form-label">Género</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Correo electrónico"
+                  required
+                />
+                <label for="inputEmail" class="form-label"
+                  >Correo electrónico</label
+                >
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="Contraseña"
+                  required
+                />
+                <label for="inputPassword" class="form-label">Contraseña</label>
+              </div>
+              <div id="validacion-caracteres-contrasena" class="row">
+                <label>Mínimo 8 letras</label>
+                <label>Contiene 1 número</label>
+                <label>Contiene 1 mayúscula</label>
+                <label>Contiene 1 símbolo ( . , _ )</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating" id="confirmarContrasena">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputPasswordConfirm"
+                  placeholder="Confirmar Contraseña"
+                  required
+                />
+                <label for="inputPasswordConfirm" class="form-label"
+                  >Confirmar Contraseña</label
+                >
+              </div>
+              <div id="validacion-coincidencia-contrasena" hidden>
+                <label>Las contraseñas coinciden</label>
+              </div>
+            </div>
+
+            <!-- Linea divisora para separar el contenido -->
+            <hr />
+            <label>Dirección</label>
+            <!-- Datos de direccion -->
+            <div class="col-md-2">
+              <div class="form-floating">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputCP"
+                  placeholder="Código postal"
+                  onchange="cp()"
+                  required
+                />
+                <label for="inputCP" class="form-label">Código postal</label>
+              </div>
+            </div>
+            <!-- dropdowns para los estados -->
+            <div class="col-md-5" id="dataEstado">
+              <div class="form-floating" id="selectEstado">
+                <select id="inputEstado" class="form-select" required>
+                  <option value="" selected disabled hidden>Estado</option>
+                  <option id="cpEstado">...</option>
+                </select>
+                <label for="inputEstado">Estado</label>
+              </div>
+            </div>
+            <!-- dropdowns para las ciudades -->
+            <div class="col-md-5" id="dataCiudad">
+              <div class="form-floating" id="selectCiudad">
+                <select id="inputCiudad" class="form-select" required>
+                  <option value="" selected disabled hidden>Ciudad</option>
+                  <option id="cpMunicipio">...</option>
+                </select>
+                <label for="inputCiudad">Ciudad</label>
+              </div>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="direccionCheckbox"
+              />
+              <label class="form-check-label" for="direccionCheckbox">
+                Si no encuentras tu estado, da click aquí!
+              </label>
+            </div>
+            <!-- linea divisora del contenido -->
+            <hr />
+            <!-- Seleccion de tipo de usuario con radio buttons -->
+            <label>Selecciona el tipo de usuario que eres</label>
+            <section id="seleccionUsuario">
+              <!-- Radio Soy músico -->
+              <section class="column-gap-3" id="seleccionMusico">
+                <div class="col-md-6 form-check m-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="soyMusico"
+                    checked
+                  />
+                  <label class="form-check-label" for="soyMusico">
+                    Soy músico
+                  </label>
+                </div>
+                <section id="musicoInputs">
+                  <div class="col-md-6 form-floating m-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputInstrumentos"
+                      placeholder="Instrumentos músicales"
+                    />
+                    <label for="inputInstrumentos" class="form-label"
+                      >Instrumentos músicales</label
+                    >
+                  </div>
+                  <div class="col-md-6 form-floating m-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputGenerosMusicales"
+                      placeholder="Géneros músicales"
+                    />
+                    <label for="inputGenerosMusicales" class="form-label"
+                      >Géneros músicales</label
+                    >
+                  </div>
+                </section>
+              </section>
+
+              <!-- Radio Soy escenario -->
+              <section class="column-gap-3" id="usuarioChips">
+                <section class="d-flex m-3 row" id="instrumentosChips">
+                  <label>Tus instrumentos músicales</label>
+                </section>
+                <section class="col-md-6 m-3 row" id="generosChips">
+                  <label>Tus generos músicales</label>
+                </section>
+              </section>
+            </section>
+            <hr />
+            <!-- linea divisora final -->
+            <section class="registroDeUsuario--form--buttons text-end">
+              <div id="alertaFormulario"></div>
+              <!-- botones finales de registro y cancelación -->
+              <a
+                class="boton outlined"
+                id="cancelar"
+                href="../inicioDeSesion/inicioDeSesion.html"
+                >Cancelar</a
+              >
+              <button class="boton flat" id="registrarme">Registrarme</button>
+            </section>
+          </div>
+        </div>
+      </form>
+      <!-- fin del formulario de registro -->
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="registroDeUsuario.js"></script>
+  </body>
+</html>
